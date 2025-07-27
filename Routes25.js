@@ -8,7 +8,7 @@ const requestHandler=(req,res)=>{
         res.write('<title>Home Page</title>');
         res.write('</head>');
         res.write('<body>');
-        res.write('<form action="/message method="POST"><input type="text" name="message"><input type="submit" value="send"></form>');
+        res.write('<form action="/message" method="POST"><input type="text" name="message"><input type="submit" value="send"></form>');
         res.write('</body>');
         res.write('</html>');
         return res.end();
@@ -25,7 +25,7 @@ const requestHandler=(req,res)=>{
             const parsedbody=Buffer.concat(body).toString();
             const txt=parsedbody.split('=');
             console.log('values are:');
-            fs.writeFile('Text2.txt',HII,(err)=>{
+            fs.writeFile('Text2.txt',txt[1],(err)=>{
                res.setHeader('Location','/');
                res.statusCode=302;
                return res.end();
