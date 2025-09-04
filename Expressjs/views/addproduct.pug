@@ -1,0 +1,23 @@
+html
+  head 
+    title Add product
+  body
+    header
+      nav
+        ul
+          li
+            a(href="/") Shop
+          br
+          li
+            a(href="/admin/add-product") Add Product
+    main
+      form(action="/admin/add-product" method="POST")
+        input(type="text" name="title")
+        button(type="submit") Add product
+    h1 Products
+    if products.length > 0
+      ul 
+        each product in products
+          li= product.name
+    else 
+      h5 No course available
