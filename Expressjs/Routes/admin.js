@@ -1,11 +1,15 @@
-const express=require('express');
-const router=express.Router();
-const val=express();
-router.get('/add-product',(req,res,next)=>{
-    res.send('<h1>Add Product</h1><form action=http://localhost:8000/admin/store-product method="POST"><input type="text"name="title"><input type="submit" value="send"></form>')
-})
-router.post('/store-product',(req,res,next)=>{
-    console.log('Form Data:',req.body);
-    res.send('<h1>Value Submitted successfully!!</h1>');
-})
-module.exports=router;
+const express = require('express');
+const router = express.Router();
+
+const products = [];
+
+router.get('/add-product', (req, res, next) => {
+    res.render('addproduct', { docTitle: "Add Product", products: products });
+});
+
+router.post('/add-product', (req, res, next) => {
+    products.push({ name: req.body.title });
+    res.redirect('/admin/add-product');
+});
+
+module.exports = router;
